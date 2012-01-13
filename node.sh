@@ -27,6 +27,16 @@
 #
 #######################################
 
+
+#######################################
+#
+# variables
+#
+#######################################
+
+PORT_NUM = 80;
+
+
 #######################################
 #
 # update server
@@ -35,6 +45,7 @@
 
 echo ">> Updating server"
 sudo apt-get update
+
 
 #######################################
 #
@@ -66,6 +77,7 @@ sudo apt-get install curl -y
 echo ">> Installing python-software-properties >>"
 sudo apt-get install python-software-properties -y
 
+
 #######################################
 #
 # install node.js
@@ -81,6 +93,7 @@ echo ">> configure and make >>"
 ./configure
 make
 sudo make install
+
 
 #######################################
 #
@@ -112,6 +125,7 @@ sudo npm install coffee-script
 echo ">> Installing keygrip >>"
 sudo npm install keygrip
 
+
 #######################################
 #
 # print success messages
@@ -125,5 +139,15 @@ echo ">> Node.js `node -v` is running."
 echo ">> npm `npm -v` is running."
 
 echo ">> Node.js + packages + dependencies installed"
+
+
+#######################################
+#
+# open up port on server
+#
+#######################################
+
+echo ">> Openning port `$PORT_NUM` on server"
+sudo iptables -A INPUT -p tcp --dport $PORT_NUM -j ACCEPT
 
 exit
