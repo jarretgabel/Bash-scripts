@@ -148,6 +148,8 @@ echo ">> Node.js + packages + dependencies installed"
 #######################################
 
 echo ">> Openning port `$PORT_NUM` on server"
-sudo iptables -A INPUT -p tcp --dport $PORT_NUM -j ACCEPT
+sudo ufw allow $PORT_NUM/tcp
+sudo ufw enable
+sudo ufw status numbered
 
 exit
